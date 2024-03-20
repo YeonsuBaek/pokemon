@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/feature/Header'
 import Main from './pages/Main'
 import Pokemon from './pages/Pokemon'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/pokemon/:id" element={<Pokemon />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </main>
     </BrowserRouter>
