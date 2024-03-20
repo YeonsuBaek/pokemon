@@ -1,14 +1,16 @@
 import { Button } from '@yeonsubaek/yeonsui'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const Pokemon = () => {
+  const { id } = useParams()
+
   return (
     <div className="flex flex-col items-center mb-8">
       <figure className="mb-4">
         <img className="mb-4 w-full aspect-square max-w-[400px]" src="http://placehold.it/400x400" alt="Name" />
         <figcaption className="flex flex-col items-center">
-          <span className="text-gray-500">No.1</span>
+          <span className="text-gray-500">No.{id}</span>
           <h2 className="text-2xl font-bold">Name</h2>
         </figcaption>
       </figure>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const PokemonItem = () => {
   return (
     <li className="list-none">
-      <Link to="/">
+      <Link to="/pokemon/1">
         <figure className="flex flex-col items-center justify-start w-[150] gap-3">
           <img src="http://placehold.it/150X150" alt="pokemon_name" />
           <figcaption className="flex items-start justify-center gap-2">
