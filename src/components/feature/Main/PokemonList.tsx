@@ -34,8 +34,8 @@ const PokemonList = () => {
 
   return (
     <ul className="flex flex-wrap justify-center gap-4">
-      {pokemons.map((pokemon: PokemonType) => (
-        <PokemonItem />
+      {pokemons.map(({ id, name }: PokemonType) => (
+        <PokemonItem id={id} name={name} key={id} />
       ))}
     </ul>
   )
