@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PokemonList from '../components/feature/Main/PokemonList'
-import { TextField } from '@yeonsubaek/yeonsui'
+import Search from '../components/feature/Main/Search'
 
 const Main = () => {
+  const [searchValue, setSearchValue] = useState('')
+
   return (
     <div>
-      <TextField icon="Filter" placeholder="번호를 입력해 포켓몬을 찾아보세요." />
-      <PokemonList />
+      <Search onChangeSearch={setSearchValue} />
+      <PokemonList searchValue={searchValue} />
     </div>
   )
 }

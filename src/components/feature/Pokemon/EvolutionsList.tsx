@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EvolutionItem from './EvolutionItem'
+import { getIdFromUrl } from '../../../utils/common'
 
 type evolutionType = {
   name: string
@@ -22,12 +23,7 @@ const EvolutionsList = ({ url }: EvolutionListProps) => {
       while (elem) {
         if (elem.species?.name && elem.species?.url) {
           const { name, url: pokemonUrl } = elem.species
-          const id = Number(
-            pokemonUrl
-              .split('/')
-              .filter((part: string) => !!part)
-              .pop()
-          )
+          const id = getIdFromUrl(pokemonUrl)
           newLevel.push({ name, id })
         }
         elem = elem.evolves_to[0]
