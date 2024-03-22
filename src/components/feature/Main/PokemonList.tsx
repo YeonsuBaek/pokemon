@@ -21,11 +21,7 @@ const PokemonList = ({ searchValue }: PokemonListProps) => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}&offset=${(page - 1) * LIMIT}`)
       const data = await response.json()
-      const filteredPokemons = data.results.filter(({ url }: { url: string }) => {
-        const id = getIdFromUrl(url).toString()
-        return id.includes(searchValue)
-      })
-      const pokemonsData = filteredPokemons.map(({ name, url }: { name: string; url: string }) => ({
+      const pokemonsData = data.results.map(({ name, url }: { name: string; url: string }) => ({
         name,
         id: getIdFromUrl(url),
       }))
@@ -42,7 +38,19 @@ const PokemonList = ({ searchValue }: PokemonListProps) => {
 
   useEffect(() => {
     fetchPokemons()
-  }, [page, searchValue]) // 페이지나 검색어가 변경될 때마다 호출
+  }, [page])
+
+  useEffect(() => {
+    if (searchValue.length > 0) {
+      const filteredPokemons = pokemons.filter(({ id }: { id: number }) => {
+        return id.toString().includes(searchValue)
+      })
+      setPokemons(filteredPokemons)
+    } else {
+      setPokemons([])
+      fetchPokemons()
+    }
+  }, [searchValue])
 
   return (
     <>
