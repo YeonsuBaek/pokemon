@@ -4,12 +4,15 @@ import PokemonItem from './PokemonItem'
 type PokemonType = {
   id: number
   name: string
-  url?: string
+}
+
+interface PokemonListProps {
+  searchValue: string
 }
 
 const LIMIT = 30
 
-const PokemonList = () => {
+const PokemonList = ({ searchValue }: PokemonListProps) => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([])
 
   useEffect(() => {
@@ -17,10 +20,23 @@ const PokemonList = () => {
       try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}&offset=0`)
         const data = await response.json()
-        const pokemonsData = data.results.map((pokemon: { name: string; url: string }, index: number) => {
+        const filteredPokemons = data.results.filter(({ url }: { url: string }) => {
+          const id = url
+            .split('/')
+            .filter((part: string) => !!part)
+            .pop()
+
+          return id?.includes(searchValue)
+        })
+        const pokemonsData = filteredPokemons.map(({ name, url }: { name: string; url: string }) => {
+          const id = url
+            .split('/')
+            .filter((part: string) => !!part)
+            .pop()
+
           return {
-            ...pokemon,
-            id: index + 1,
+            name,
+            id,
           }
         })
         setPokemons(pokemonsData)
@@ -30,7 +46,7 @@ const PokemonList = () => {
     }
 
     fetchPokemons()
-  }, [])
+  }, [searchValue])
 
   return (
     <ul className="flex flex-wrap justify-center gap-4">
