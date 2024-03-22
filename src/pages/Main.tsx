@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PokemonList from '../components/feature/Main/PokemonList'
-import Search from '../components/block/Search'
+import Search from '../components/feature/Main/Search'
 
 const Main = () => {
   const [searchValue, setSearchValue] = useState('')

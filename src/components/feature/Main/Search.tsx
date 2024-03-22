@@ -1,6 +1,6 @@
 import { TextField } from '@yeonsubaek/yeonsui'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import useDebounce from '../../hooks/useDebounce'
+import useDebounce from '../../../hooks/useDebounce'
 
 interface SearchProps {
   onChangeSearch: (value: string) => void
