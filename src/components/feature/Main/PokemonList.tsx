@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PokemonItem from './PokemonItem'
+import { getIdFromUrl } from '../../../utils/common'
 
 type PokemonType = {
   id: number
@@ -21,19 +22,11 @@ const PokemonList = ({ searchValue }: PokemonListProps) => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}&offset=0`)
         const data = await response.json()
         const filteredPokemons = data.results.filter(({ url }: { url: string }) => {
-          const id = url
-            .split('/')
-            .filter((part: string) => !!part)
-            .pop()
-
-          return id?.includes(searchValue)
+          const id = getIdFromUrl(url).toString()
+          return id.includes(searchValue)
         })
         const pokemonsData = filteredPokemons.map(({ name, url }: { name: string; url: string }) => {
-          const id = url
-            .split('/')
-            .filter((part: string) => !!part)
-            .pop()
-
+          const id = getIdFromUrl(url)
           return {
             name,
             id,
