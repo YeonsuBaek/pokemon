@@ -15,6 +15,7 @@ type typeOfInfoType = {
 type informationType = {
   height: number
   name: string
+  koreanName: string
   types: typeOfInfoType[]
   weight: number
 }
@@ -31,7 +32,11 @@ const Pokemon = () => {
         const species = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
         const informationData = await information.json()
         const speciesData = await species.json()
-        setInformation(informationData)
+        const koreanName = speciesData.names?.find(
+          ({ language }: { language: { name: string } }) => language.name === 'ko'
+        ).name
+
+        setInformation({ ...informationData, koreanName })
         setEvolutionUrl(speciesData.evolution_chain.url)
       } catch (error) {
         console.error('Error fetching Pokemon:', error)
@@ -45,7 +50,7 @@ const Pokemon = () => {
     <div className="flex flex-col items-center mb-8">
       {information ? (
         <>
-          <PokemonCard name={information.name} id={Number(id)} />
+          <PokemonCard name={information.name} koreanName={information.koreanName} id={Number(id)} />
           <dl className="flex justify-between mb-4 px-5 py-4 border border-gray-300 rounded w-full max-w-[400px]">
             <div className="flex items-start justify-start gap-2">
               <dt className="text-gray-500">타입</dt>
