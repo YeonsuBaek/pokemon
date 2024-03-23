@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import EvolutionItem from './EvolutionItem'
 import { getIdFromUrl } from '../../../utils/common'
 
@@ -11,7 +11,7 @@ interface EvolutionListProps {
   url: string
 }
 
-const EvolutionsList = ({ url }: EvolutionListProps) => {
+const EvolutionsList = memo(({ url }: EvolutionListProps) => {
   const [evolutions, setEvolutions] = useState<evolutionType[]>([])
 
   const fetchEvolution = async (url: string) => {
@@ -45,6 +45,6 @@ const EvolutionsList = ({ url }: EvolutionListProps) => {
       ))}
     </ul>
   )
-}
+})
 
 export default EvolutionsList
