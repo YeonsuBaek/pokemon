@@ -5,6 +5,7 @@ import EvolutionsList from '../components/feature/Pokemon/EvolutionsList'
 import PokemonCard from '../components/block/PokemonCard'
 import MetaTag from '../components/block/MetaTag'
 import InformationList from '../components/feature/Pokemon/InformationList'
+import getKoreanName from '../api/getKoreanName'
 
 export type typeOfInfoType = {
   slot: number
@@ -17,7 +18,6 @@ export type typeOfInfoType = {
 type informationType = {
   height: number
   name: string
-  koreanName: string
   types: typeOfInfoType[]
   weight: number
 }
@@ -34,11 +34,8 @@ const Pokemon = () => {
         const species = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
         const informationData = await information.json()
         const speciesData = await species.json()
-        const koreanName = speciesData.names?.find(
-          ({ language }: { language: { name: string } }) => language.name === 'ko'
-        ).name
-
-        setInformation({ ...informationData, koreanName })
+        const koreanName = await getKoreanName(Number(id))
+        setInformation({ ...informationData, name: koreanName })
         setEvolutionUrl(speciesData.evolution_chain.url)
       } catch (error) {
         console.error('Error fetching Pokemon:', error)
@@ -53,12 +50,12 @@ const Pokemon = () => {
       <MetaTag
         title={`포켓몬 도감 사이트 ${information?.name && ` | ${information.name}`}`}
         description={`${information?.name ? information.name : '포켓몬'}에 대해 알아봅시다.`}
-        keywords={`Pokemons, 포켓몬, 포켓몬 도감, ${information?.name}. ${information?.koreanName}`}
+        keywords={`Pokemons, 포켓몬, 포켓몬 도감, ${information?.name}`}
       />
       <div className="flex flex-col items-center mb-8">
         {information ? (
           <>
-            <PokemonCard name={information.name} koreanName={information.koreanName} id={Number(id)} />
+            <PokemonCard name={information.name} id={Number(id)} />
             <InformationList types={information.types} weight={information.weight} height={information.height} />
             <EvolutionsList url={evolutionUrl} />
           </>

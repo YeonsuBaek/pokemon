@@ -3,11 +3,10 @@ import React from 'react'
 interface PokemonCardProps {
   id: number
   name: string
-  koreanName?: string
   size?: 'large' | 'small'
 }
 
-const PokemonCard = ({ id, name, koreanName, size = 'large' }: PokemonCardProps) => {
+const PokemonCard = ({ id, name, size = 'large' }: PokemonCardProps) => {
   return (
     <figure className={size === 'large' ? 'mb-4' : 'flex flex-col items-center'}>
       <img
@@ -17,10 +16,7 @@ const PokemonCard = ({ id, name, koreanName, size = 'large' }: PokemonCardProps)
       />
       <figcaption className="flex flex-col items-center">
         <span className="text-gray-500">No.{id}</span>
-        <h2 className={size === 'large' ? 'text-2xl font-bold' : ''}>
-          {name}
-          {koreanName && `(${koreanName})`}
-        </h2>
+        <h2 className={size === 'large' ? 'text-2xl font-bold' : ''}>{name}</h2>
       </figcaption>
     </figure>
   )

@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import EvolutionItem from './EvolutionItem'
 import { getIdFromUrl } from '../../../utils/common'
+import getKoreanName from '../../../api/getKoreanName'
 
 type evolutionType = {
   name: string
@@ -22,8 +23,9 @@ const EvolutionsList = memo(({ url }: EvolutionListProps) => {
       let elem = evolutionData.chain
       while (elem) {
         if (elem.species?.name && elem.species?.url) {
-          const { name, url: pokemonUrl } = elem.species
+          const { url: pokemonUrl } = elem.species
           const id = getIdFromUrl(pokemonUrl)
+          const name = await getKoreanName(id)
           newLevel.push({ name, id })
         }
         elem = elem.evolves_to[0]
