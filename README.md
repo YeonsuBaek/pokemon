@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# 포켓몬 도감
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 시작하기
 
-Currently, two official plugins are available:
+[배포 링크](https://pokemons-ecru.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 참여하기
 
-## Expanding the ESLint configuration
+다음 버전이 필요합니다: [Node.js 18.19.0](https://nodejs.org/ca/blog/release/v18.19.0), [Npm 8.19.2](https://www.npmjs.com/package/npm/v/8.19.2)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/YeonsuBaek/pokemon.git
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 프로젝트 소개
+
+### 작업기간
+
+2024.03
+
+### 구성원
+
+1명 (기여도 100%)
+
+### 설명
+
+포켓몬 목록과 상세 설명을 볼 수 있는 도감입니다.
+
+### 업무
+
+1. 포켓몬 API를 활용하여 포켓몬 정보 패칭
+2. 포켓몬 한글 이름 출력
+3. 포켓몬 번호 검색 기능
+4. 포켓몬 목록 무한스크롤 페이지네이션
+5. 포켓몬 클릭 시 디테일 및 진화 단계 데이터 패칭
+6. 렌더링, SEO, 퍼포먼스 최적화
+
+### 기술
+
+React, TypeScript, TailwindCSS, Git  
+[YEONSUI](https://github.com/YeonsuBaek/yeonsui), Zustand, React-Router-Dom, React-Helmet-Async
