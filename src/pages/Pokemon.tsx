@@ -4,8 +4,9 @@ import { Link, useParams } from 'react-router-dom'
 import EvolutionsList from '../components/feature/Pokemon/EvolutionsList'
 import PokemonCard from '../components/block/PokemonCard'
 import MetaTag from '../components/block/MetaTag'
+import InformationList from '../components/feature/Pokemon/InformationList'
 
-type typeOfInfoType = {
+export type typeOfInfoType = {
   slot: number
   type: {
     name: string
@@ -58,24 +59,7 @@ const Pokemon = () => {
         {information ? (
           <>
             <PokemonCard name={information.name} koreanName={information.koreanName} id={Number(id)} />
-            <dl className="flex justify-between mb-4 px-5 py-4 border border-gray-300 rounded w-full max-w-[400px]">
-              <div className="flex items-start justify-start gap-2">
-                <dt className="text-gray-500">타입</dt>
-                <dd>
-                  {information?.types?.map(({ slot, type }: typeOfInfoType) => {
-                    return <span key={slot}>{type.name}</span>
-                  })}
-                </dd>
-              </div>
-              <div className="flex items-start justify-start gap-2">
-                <dt className="text-gray-500">키</dt>
-                <dd>{information.height}</dd>
-              </div>
-              <div className="flex items-start justify-start gap-2">
-                <dt className="text-gray-500">몸무게</dt>
-                <dd>{information.weight}</dd>
-              </div>
-            </dl>
+            <InformationList types={information.types} weight={information.weight} height={information.height} />
             <EvolutionsList url={evolutionUrl} />
           </>
         ) : null}
