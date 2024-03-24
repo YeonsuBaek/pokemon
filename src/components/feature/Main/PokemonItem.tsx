@@ -13,7 +13,7 @@ const PokemonItem = ({ id, name }: PokemonItemProps) => {
     <li className="list-none">
       <Link to={`/pokemon/${id}`}>
         <figure className="flex flex-col items-center justify-start w-[150px] gap-3">
-          <img src={imageUrl} alt={name} />
+          <img className="w-[150px] h-[150px]" src={imageUrl} alt={name} />
           <figcaption className="flex items-start justify-center gap-2">
             <span className="w-6 h-6 flex-center rounded-xl bg-cyan-200">{id}</span>
             <h2>{name}</h2>
