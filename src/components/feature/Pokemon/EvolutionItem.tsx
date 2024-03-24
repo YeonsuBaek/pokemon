@@ -10,8 +10,8 @@ interface EvolutionItemProps {
 
 const EvolutionItem = ({ name, id, hasNext }: EvolutionItemProps) => {
   return (
-    <li key={id} className={hasNext ? "after:content-['▶️'] after:mx-4 flex items-center" : ''}>
-      <Link to={`/pokemon/${id}`}>
+    <li key={id} className={hasNext ? "after:content-['▶️'] after:mx-4 flex-center" : 'flex-center'}>
+      <Link to={`/pokemon/${id}`} className="hover:bg-gray-100">
         <PokemonCard name={name} id={id} size="small" />
       </Link>
     </li>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import PokemonItem from './PokemonItem'
 import { getIdFromUrl } from '../../../utils/common'
 import usePokemonStore, { PokemonStore, PokemonType } from '../../../stores/Pokemon'
+import getKoreanName from '../../../api/getKoreanName'
 
 interface PokemonListProps {
   searchValue: string
@@ -21,10 +22,15 @@ const PokemonList = ({ searchValue }: PokemonListProps) => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}&offset=${(page - 1) * LIMIT}`)
       const data = await response.json()
-      const pokemonsData = data.results.map(({ name, url }: { name: string; url: string }) => ({
-        name,
-        id: getIdFromUrl(url),
-      }))
+      const promises = data.results.map(async ({ url }: { url: string }) => {
+        const id = getIdFromUrl(url)
+        const name = await getKoreanName(id)
+        return {
+          name,
+          id,
+        }
+      })
+      const pokemonsData = await Promise.all(promises)
       setPokemons(pokemonsData)
     } catch (error) {
       console.error('Error fetching Pokemon:', error)
@@ -35,10 +41,9 @@ const PokemonList = ({ searchValue }: PokemonListProps) => {
 
   const fetchFilteredPokemon = async (id: number) => {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      const data = await response.json()
+      const koreanName = await getKoreanName(id)
       const pokemonsData = {
-        name: data.name,
+        name: koreanName,
         id,
       }
       setFilteredPokemon(pokemonsData)

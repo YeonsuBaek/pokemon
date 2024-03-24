@@ -8,7 +8,7 @@ interface SearchProps {
 
 const Search = ({ onChangeSearch }: SearchProps) => {
   const [value, setValue] = useState('')
-  const debouncedValue = useDebounce(value, 100)
+  const debouncedValue = useDebounce(value, 300)
 
   useEffect(() => onChangeSearch(debouncedValue), [debouncedValue])
 
