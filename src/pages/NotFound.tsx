@@ -1,5 +1,4 @@
 import { Button } from '@yeonsubaek/yeonsui'
-import React from 'react'
 import { Link } from 'react-router-dom'
 import MetaTag from '../components/block/MetaTag'
 

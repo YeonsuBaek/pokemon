@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PokemonItem from './PokemonItem'
 import { getIdFromUrl } from '../../../utils/common'
 import usePokemonStore, { PokemonStore, PokemonType } from '../../../stores/Pokemon'

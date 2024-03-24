@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface PokemonCardProps {
   id: number
   name: string

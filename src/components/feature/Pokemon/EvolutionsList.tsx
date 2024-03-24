@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import EvolutionItem from './EvolutionItem'
 import { getIdFromUrl } from '../../../utils/common'
 import getKoreanName from '../../../api/getKoreanName'

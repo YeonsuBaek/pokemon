@@ -1,5 +1,5 @@
 import { Button } from '@yeonsubaek/yeonsui'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import EvolutionsList from '../components/feature/Pokemon/EvolutionsList'
 import PokemonCard from '../components/block/PokemonCard'

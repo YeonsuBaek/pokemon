@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import PokemonList from '../components/feature/Main/PokemonList'
 import Search from '../components/feature/Main/Search'
 import MetaTag from '../components/block/MetaTag'
